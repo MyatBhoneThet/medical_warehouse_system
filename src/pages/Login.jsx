@@ -21,9 +21,9 @@ export default function Login() {
         return true;
     };
 
-  // Continue button handler
+    // Continue button handler
     const handleSubmit = () => {
-        if (!validateEmail(email) && password.length < 7) {
+        if (!validateEmail(email) || password.length < 7) {
             setWobble(true);
             setTimeout(() => setWobble(false), 500);
             return;
@@ -33,44 +33,73 @@ export default function Login() {
 
     return (
         <div className="min-h-screen flex">
-            <div className={`w-full lg:w-1/2 flex items-center justify-center bg-white ${wobble ? "animate-wobble" : ""}`}>
-                <div className="w-[90%] max-w-md">
+            
+            {/* LEFT SIDE (FORM) */}
+            <div
+                className={`w-full lg:w-1/2 flex items-center justify-center bg-white ${
+                    wobble ? "animate-wobble" : ""
+                }`}
+            >
+                <div className="w-[90%] max-w-md mx-auto text-center">
 
-                    <h1 className="text-3xl font-bold mb-2">SmartSave</h1>
+                    {/* Title */}
+                    <h1 className="text-3xl font-bold mb-6">SmartSave</h1>
 
-                    <h2 className="text-2xl font-semibold">Welcome Back</h2>
+                    {/* Subtitle */}
+                    <div className="mb-8">
+                        <h2 className="text-2xl font-semibold">
+                            {mode === "signin" ? "Welcome Back" : "Create Account"}
+                        </h2>
+                        <p className="text-gray-400 mt-2">
+                            {mode === "signin"
+                                ? "Please enter your details"
+                                : "Start your SmartSave journey"}
+                        </p>
+                    </div>
 
-                    <p className="text-gray-400 mb-6">Please enter your details</p>
-
+                    {/* Toggle */}
                     <ToggleAuth mode={mode} setMode={setMode} />
-                    <EmailField
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        error={error}
-                    />
-                    <PasswordField
-                        value={password}
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        error={error}
-                    />
 
+                    {/* Inputs */}
+                    <div className="space-y-4 mt-4 text-left">
+                        <EmailField
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            error={error}
+                        />
+
+                        <PasswordField
+                            value={password}
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            error={error}
+                        />
+                    </div>
+
+                    {/* Button */}
                     <button
                         onClick={handleSubmit}
-                        className="w-full bg-blue-800 text-white py-3 rounded-xl mt-4 hover:scale-105 transition"
+                        className="w-full bg-blue-800 text-white py-3 rounded-xl mt-6 hover:scale-105 hover:bg-blue-900 transition"
                     >
                         Continue
                     </button>
 
-                    <p className="text-center text-gray-400 my-4">Or Continue With</p>
+                    {/* Divider */}
+                    <p className="text-gray-400 my-4">Or Continue With</p>
 
+                    {/* OAuth */}
                     <OAuthButtons />
-                    </div>
-                </div>
-
-                <div className="hidden lg:flex w-1/2 items-center justify-center">
-                    <img src={safeImg} alt="safe" className="w-2/3" />
                 </div>
             </div>
+
+            {/* RIGHT SIDE (IMAGE) */}
+            <div className="hidden lg:flex w-1/2 items-center justify-center bg-gray-50">
+                <img
+                    src={safeImg}
+                    alt="safe"
+                    className="w-2/3 max-w-md"
+                />
+            </div>
+        </div>
     );
 }
