@@ -6,37 +6,31 @@ export default function EmailField({ value, onChange, error }) {
     return (
         <div className="w-full">
             <div className="flex items-center border rounded-2xl px-4 py-3 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400 transition">
-
-                {/* Icon */}
+                {/*Mail Icon */}
                 <Mail className="text-gray-400 mr-3 flex-shrink-0" size={20} />
-
                 {/* Divider */}
                 <div className="h-6 w-px bg-gray-300 mr-3" />
-
                 {/* Input container */}
                 <div className="relative flex-1">
                     <label
                         className={`absolute left-0 transition-all duration-200 pointer-events-none
-                        ${value ? "-top-2 text-xs text-gray-500" : "top-2 text-sm text-gray-400"}
+                        ${value ? "-top-2 text-xs text-gray-500" : "top-1 text-sm text-gray-400"}
                         `}
                     >
                         Email Address
                     </label>
-
                     <input
                         type="email"
                         value={value}
                         onChange={onChange}
-                        className="w-full bg-transparent outline-none pt-4 text-sm"
+                        className="w-full bg-transparent outline-none pt-2 text-sm"
                     />
                 </div>
-
                 {/* Check icon */}
                 {isValid && (
                     <CheckCircle className="text-green-500 ml-3 flex-shrink-0" size={20} />
                 )}
             </div>
-
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>
     );
@@ -51,31 +45,26 @@ export function PasswordField({ value, onChange, error }) {
     return (
         <div className="w-full">
             <div className="flex items-center border rounded-2xl px-4 py-3 bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400 transition">
-
-                {/* Left Icon */}
+                {/* Password Icon */}
                 <Lock className="text-gray-400 mr-3 flex-shrink-0" size={20} />
-
                 {/* Divider */}
                 <div className="h-6 w-px bg-gray-300 mr-3" />
-
                 {/* Input + Floating Label */}
                 <div className="relative flex-1">
                     <label
                         className={`absolute left-0 transition-all duration-200 pointer-events-none
-                        ${value ? "-top-2 text-xs text-gray-500" : "top-2 text-sm text-gray-400"}
+                        ${value ? "-top-2 text-xs text-gray-500" : "top-1 text-sm text-gray-400"}
                         `}
                     >
                         Password
                     </label>
-
                     <input
                         type={show ? "text" : "password"}
                         value={value}
                         onChange={onChange}
-                        className="w-full bg-transparent outline-none pt-4 text-sm"
+                        className="w-full bg-transparent outline-none pt-2 text-sm"
                     />
                 </div>
-
                 {/* Eye Toggle */}
                 <button
                     type="button"
@@ -85,7 +74,6 @@ export function PasswordField({ value, onChange, error }) {
                     {show ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
             </div>
-
             {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>
     );

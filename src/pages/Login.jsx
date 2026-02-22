@@ -38,7 +38,7 @@ export default function Login() {
                     wobble ? "animate-wobble" : ""
                 }`}
             >
-                <div className="w-[85%] max-w-sm mx-auto text-center translate-x-4 lg:translate-x-8">
+                <div className="w-[85%] max-w-sm mx-auto text-center">
 
                     {/* Title */}
                     <h1 className="text-4xl lg:text-5xl font-bold tracking-tight">
